@@ -1,0 +1,62 @@
+#@hostname=localhost
+#@port=3000
+
+### This is a GET request
+#GET https://{{hostname}}:{{port}}/api/resource
+
+### This is a POST request with JSON body
+//https://jsonlint.com/
+## AZURE_OPEN_API_SERVICE_NAME
+### YOUR_API_KEY
+@azOpenAIServiceName=enterprisedata
+@hostname={{azOpenAIServiceName}}-openai.openai.azure.com
+@key=YOUR_API_KEY
+POST https://{{hostname}}/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-07-01-preview
+Content-Type: application/json
+api-key:{{key}}
+
+{
+ "messages": [
+    {
+        "role": "system",
+        "content": "The system is an AI teacher that helps people learn about AI"
+    },
+    {
+        "role": "user",
+        "content": "What are different types of artificial intelligence?"
+    },
+    {
+        "role": "assistant",
+        "content": "There are different types of artificial intelligence, including:nn1. Reactive Machines: These AI systems are designed to react to a specific input but do not have any memory or ability to learn from past experiences.nn2. Limited Memory: These AI systems can use past experiences to make decisions, but their memory is limited to a specific set of data.nn3. Theory of Mind: These AI systems can understand the emotions, beliefs, and motivations of other entities, allowing them to interact socially.nn4. Self-Aware AI: These AI systems have consciousness and are aware of their existence and surroundings.nn5. Artificial General Intelligence (AGI): AGI is the hypothetical AI system that can perform any intellectual task that a human can do.nn6. Artificial Superintelligence (ASI): ASI is the hypothetical AI system that is more intelligent than any human being in every field of knowledge and can solve problems that are beyond human comprehension."
+    },
+    {
+        "role": "user",
+        "content": "What is artificial intelligence?"
+    },
+    {
+        "role": "assistant",
+        "content": "Artificial intelligence (AI) is a branch of computer science that focuses on creating machines that can perform tasks that typically require human intelligence. AI involves developing algorithms and computer programs that can perform tasks such as recognizing speech, identifying objects, making predictions, decision-making, and problem-solving. AI systems can be designed to work autonomously or with human intervention. Machine learning, natural language processing, and computer vision are some of the key areas of AI research and development. The goal of AI is to create machines that can think and learn like humans, and ultimately, to create artificial general intelligence (AGI) that can perform any intellectual task that a human can do."
+    },
+    {
+        "role": "user",
+        "content": "How is it related to machine learning?"
+    },
+    {
+        "role": "assistant",
+        "content": "Machine learning is a subfield of artificial intelligence that involves developing algorithms and statistical models that allow machines to learn from data and improve their performance over time. In other words, machine learning is a way of achieving artificial intelligence.nnMachine learning algorithms use statistical techniques to identify patterns in data and make predictions or decisions based on those patterns. These algorithms can be trained on large amounts of data and can learn from that data to improve their accuracy and effectiveness.nnIn many cases, machine learning is used to power the AI systems that we interact with on a daily basis, such as voice assistants, recommendation systems, and image recognition software. By using machine learning, these systems can learn from our interactions and improve their ability to understand and respond to our needs.nnOverall, machine learning plays a crucial role in the development of AI systems, and it is one of the key technologies driving the growth of artificial intelligence."
+    },
+     {
+        "role": "user",
+        "content": "What is Azure Open AI Service? How it is related to Chat GPT models"
+    }
+],
+  
+  "max_tokens": 800,
+  "temperature": 0.7,
+  "frequency_penalty": 0,
+  "presence_penalty": 0,
+  "top_p": 0.95,
+  "stop": null
+}
+
+#

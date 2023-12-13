@@ -1,0 +1,27 @@
+#@hostname=localhost
+#@port=3000
+
+### This is a GET request
+#GET https://{{hostname}}:{{port}}/api/resource
+
+### This is a POST request with JSON body
+## AZURE_OPEN_API_SERVICE_NAME
+### YOUR_API_KEY
+@azOpenAIServiceName=enterprisedata
+@hostname={{azOpenAIServiceName}}-openai.openai.azure.com
+
+@key=YOUR_API_KEY
+POST https://{{hostname}}/openai/deployments/gpt-35-turbo/completions?api-version=2023-09-15-preview
+Content-Type: application/json
+api-key:{{key}}
+
+{
+  
+  "prompt":"Query to list the names of the departments which employed more than 10 employees in the last 3 months",
+  "max_tokens": 60,
+  "temperature": 1,
+  "frequency_penalty": 0,
+  "presence_penalty": 0,
+  "top_p": 0.2,
+  "stop": null
+}
