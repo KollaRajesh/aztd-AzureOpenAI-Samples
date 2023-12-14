@@ -7,7 +7,8 @@ using Microsoft.Extensions.Configuration.Json;
 using Azure;
 
 // Add Azure OpenAI package
-// Add Azure OpenAI packageusing Azure.AI.OpenAI;
+using Azure.AI.OpenAI;
+
 // Build a config object and retrieve user settings.
 IConfiguration config = new ConfigurationBuilder()    
                 .AddJsonFile("appsettings.json")    
@@ -19,7 +20,9 @@ string? oaiModelName = config["AzureOAIModelName"];
 // Read sample text file into a string
 string textToSummarize = System.IO.File.ReadAllText(@"../../text-files/sample-text.txt");
 
-// Generate summary from Azure OpenAIGetSummaryFromOpenAI(textToSummarize);
+// Generate summary from Azure OpenAI
+GetSummaryFromOpenAI(textToSummarize);
+
 void GetSummaryFromOpenAI(string text){      
      
      Console.WriteLine("\nSending request for summary to Azure OpenAI endpoint...\n\n");
@@ -45,7 +48,7 @@ void GetSummaryFromOpenAI(string text){
         };
 
     // Send request to Azure OpenAI model
-    ChatCompletions response = client.GetChatCompletions(chatCompletionsOptions)
+    ChatCompletions response = client.GetChatCompletions(chatCompletionsOptions);
     string completion = response.Choices[0].Message.Content;
     Console.WriteLine("Summary: " + completion + "\n");    
 
