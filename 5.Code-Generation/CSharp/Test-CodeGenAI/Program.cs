@@ -21,10 +21,10 @@ bool printFullResponse = false;
 
 do {
     Console.WriteLine("\n1: Add comments to my function\n" +
-    "2: Write unit tests for my function\n" +
-    "3: Fix my Go Fish game\n" +
-    "\"quit\" to exit the program\n\n" + 
-    "Enter a number to select a task:");
+                        "2: Write unit tests for my function\n" +
+                        "3: Fix my Go Fish game\n" +
+                        "\"quit\" to exit the program\n\n" + 
+                        "Enter a number to select a task:");
 
     command = Console.ReadLine() ?? "";
     

@@ -4,7 +4,7 @@ using System.Security.AccessControl;
 // See https://aka.ms/new-console-template for more information
 using Azure;
 using Azure.AI.OpenAI;
-Environment.
+//Environment.
 //System.Console.WriteLine(Environment.GetEnvironmentVariable("AZURE_OPENAI_EDAPI"));
 OpenAIClient client = new OpenAIClient(
 	new Uri(Environment.GetEnvironmentVariable("AZURE_OPENAI_EDAPI")),
