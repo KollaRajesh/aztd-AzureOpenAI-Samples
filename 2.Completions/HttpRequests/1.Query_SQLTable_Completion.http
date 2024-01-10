@@ -7,16 +7,13 @@
 ### This is a POST request with JSON body
 ## AZURE_OPEN_API_SERVICE_NAME
 ### YOUR_API_KEY
-@azOpenAIServiceName=enterprisedata
-@hostname={{azOpenAIServiceName}}-openai.openai.azure.com
-
-@key=YOUR_API_KEY
+@hostname={{AZURE_OAI_SERVICENAME}}-openai.openai.azure.com
+ 
 POST https://{{hostname}}/openai/deployments/gpt-35-turbo/completions?api-version=2023-09-15-preview
 Content-Type: application/json
-api-key:{{key}}
+api-key:{{AZURE_OAI_KEY}}
 
 {
-  
   "prompt":"Query to list the names of the departments which employed more than 10 employees in the last 3 months",
   "max_tokens": 60,
   "temperature": 1,

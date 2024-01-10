@@ -9,15 +9,13 @@
 ### AZURE_OPEN_AI_KEY
 ### AZURE_OPEN_AI_MODEL
 
-@azOpenAIServiceName=AZURE_OPEN_AI_SERVICE_NAME
-@hostname={{azOpenAIServiceName}}-openai.openai.azure.com
+@hostname={{AZURE_OAI_SERVICENAME}}-openai.openai.azure.com
 
-@key=AZURE_OPEN_AI_KEY
-@model= AZURE_OPEN_AI_MODEL
+@model= {{AZURE_OAI_MODEL}}
 
 POST https://{{hostname}}/openai/deployments/{{model}}/chat/completions?api-version=2023-05-15
 Content-Type: application/json
-api-key:{{key}}
+api-key:{{AZURE_OAI_KEY}}
 
 {
     "messages": [

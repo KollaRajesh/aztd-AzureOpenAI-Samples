@@ -9,12 +9,10 @@
 ## AZURE_OPEN_API_SERVICE_NAME
 ### YOUR_API_KEY
 
-@azOpenAIServiceName=enterprisedata
-@hostname={{azOpenAIServiceName}}-openai.openai.azure.com
-@key=YOUR_API_KEY
+@hostname={{AZURE_OAI_SERVICENAME}}-openai.openai.azure.com
 POST https://{{hostname}}/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-07-01-preview
 Content-Type: application/json
-api-key:{{key}}
+api-key:{{AZURE_OAI_KEY}}
 
 {
  "messages": [
