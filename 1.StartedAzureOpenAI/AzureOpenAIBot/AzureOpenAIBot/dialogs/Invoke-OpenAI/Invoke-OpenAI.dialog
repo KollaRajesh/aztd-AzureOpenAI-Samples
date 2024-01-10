@@ -1,0 +1,124 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "FPN2sp",
+    "name": "Invoke-OpenAI",
+    "comment": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "zD54pO"
+      },
+      "actions": [
+        {
+          "id": "OpenAIPrompt",
+          "$kind": "Microsoft.TextInput",
+          "$designer": {
+            "id": "TD2oIT"
+          },
+          "disabled": false,
+          "maxTurnCount": 3,
+          "alwaysPrompt": false,
+          "allowInterruptions": false,
+          "unrecognizedPrompt": "",
+          "invalidPrompt": "",
+          "defaultValueResponse": "",
+          "property": "user.activity.text",
+          "prompt": "${TextInput_Prompt_TD2oIT()}"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "qQcLwY",
+            "comment": "{\n  \"prompt\": \"${turn.activity.text}\\nT1;dr\",\n  \"max_tokens\": 1000,\n  \"temperature\": 1,\n  \"frequency_penalty\": 0,\n  \"presence_penalty\": 0,\n  \"top_p\": 0.5,\n  \"best_of\": 1,\n  \"stop\": null\n}"
+          },
+          "property": "user.content",
+          "value": {
+            "messages": [
+              {
+                "role": "system",
+                "content": "${user.activity.text}\nT1;dr"
+              }
+            ],
+            "temperature": 0.7,
+            "top_p": 0.95,
+            "frequency_penalty": 0,
+            "presence_penalty": 0,
+            "max_tokens": 800,
+            "stop": null
+          }
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "CFQ1ce"
+          },
+          "resultProperty": "turn.api_response",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "api-key": "7716896e824c4f809325c39de0662854"
+          },
+          "body": "=user.content",
+          "url": "https://sam-cap-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-07-01-preview"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "m4XlCT"
+          },
+          "disabled": true,
+          "activity": "${SendActivity_m4XlCT()}"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "YsMm0e"
+          },
+          "condition": "=turn.api_response.statusCode == 200",
+          "actions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "Txuui0"
+              },
+              "activity": "${SendActivity_Txuui0()}"
+            },
+            {
+              "$kind": "Microsoft.DeleteProperty",
+              "$designer": {
+                "id": "ZRunX1"
+              },
+              "property": "user.activity.text"
+            },
+            {
+              "$kind": "Microsoft.GotoAction",
+              "$designer": {
+                "id": "PB2Ozi"
+              },
+              "actionId": "OpenAIPrompt"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "6AEBTU"
+              },
+              "activity": "${SendActivity_6AEBTU()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "Invoke-OpenAI.lg",
+  "recognizer": "Invoke-OpenAI.lu.qna",
+  "id": "Invoke-OpenAI"
+}

@@ -1,0 +1,30 @@
+[import](common.lg)
+
+# TextInput_Prompt_TD2oIT()
+[Activity
+    Text = ${TextInput_Prompt_TD2oIT_text()}
+]
+
+# TextInput_Prompt_TD2oIT_text()
+- I am happy to answer your question , Please ask any question?
+# SendActivity_m4XlCT()
+[Activity
+    Text = ${SendActivity_m4XlCT_text()}
+]
+
+# SendActivity_m4XlCT_text()
+- Response  - ${turn.api_response}
+# SendActivity_Txuui0()
+[Activity
+    Text = ${SendActivity_Txuui0_text()}
+]
+
+# SendActivity_Txuui0_text()
+- ${turn.api_response.content.choices[0].message.content}
+# SendActivity_6AEBTU()
+[Activity
+    Text = ${SendActivity_6AEBTU_text()}
+]
+
+# SendActivity_6AEBTU_text()
+- Response  - ${turn.api_response}

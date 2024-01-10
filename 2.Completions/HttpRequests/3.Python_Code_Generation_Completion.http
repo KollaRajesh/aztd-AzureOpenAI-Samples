@@ -1,0 +1,45 @@
+#@hostname=localhost
+#@port=3000
+
+### This is a GET request
+#GET https://{{hostname}}:{{port}}/api/resource
+
+### This is a POST request with JSON body
+//https://jsonlint.com/
+## AZURE_OPEN_API_SERVICE_NAME
+### YOUR_API_KEY
+
+@hostname={{AZURE_OAI_SERVICENAME}}-openai.openai.azure.com
+POST https://{{hostname}}/openai/deployments/gpt-35-turbo/chat/completions?api-version=2023-07-01-preview
+Content-Type: application/json
+api-key:{{AZURE_OAI_KEY}}
+
+{
+ "messages": [
+    {
+        "role": "system",
+        "content": "You are a Python developer."
+    },
+    {
+        "role": "user",
+        "content": "Write a Python function named Multiply that multiplies two numeric parameters."
+    },
+    {
+        "role": "assistant",
+        "content": "Here's the Python function that multiplies two numeric parameters:nn```pythonndef Multiply(a, b):n    return a * bn```nnYou can call this function by passing in two numeric values as arguments:nn```pythonnresult = Multiply(5, 10)nprint(result) # Output: 50n```nnIn the example above, we're calling the `Multiply` function with arguments `5` and `10` and storing the result in a variable called `result`. The `print` function is then used to output the value of `result` which is `50`."
+    },
+     {
+        "role": "user",
+        "content": "Write a Python function named Add that Adding two numeric parameters."
+    }
+],
+  
+  "max_tokens": 800,
+  "temperature": 0.7,
+  "frequency_penalty": 0,
+  "presence_penalty": 0,
+  "top_p": 0.95,
+  "stop": null
+}
+
+#
